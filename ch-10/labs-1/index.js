@@ -1,15 +1,23 @@
 'use strict'
 const assert = require('assert')
 
-function parseUrl (str) {
-  const parsed = new URL(str)
-  return parsed
+function parseUrl(str) {
+  try {
+    const parsed = new URL(str)
+    return parsed
+  } catch (error) {
+    if (error instanceof TypeError) {
+      return null
+    }
+  }
 }
 
 assert.doesNotThrow(() => { parseUrl('invalid-url') })
 assert.equal(parseUrl('invalid-url'), null)
 assert.deepEqual(
-  parseUrl('http://example.com'), 
+  parseUrl('http://example.com'),
   new URL('http://example.com')
 )
 console.log('passed!')
+
+// всталяем трюкача и отлыавлиавем ошибку

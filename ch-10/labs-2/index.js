@@ -2,15 +2,18 @@
 const fs = require('fs')
 const assert = require('assert')
 
-async function read (file) {
-  const content = await fs.promises.readFile(file)
-  return content
+async function read(file) {
+  try {
+    const content = await fs.promises.readFile(file)
+    return content
+  } catch (error) {
+    throw new Error('failed to read')
+  }
 }
 
-
-async function check () {
+async function check() {
   await assert.rejects(
-    read('not-a-valid-filepath'), 
+    read('not-a-valid-filepath'),
     new Error('failed to read')
   )
   assert.deepEqual(
@@ -21,3 +24,5 @@ async function check () {
 }
 
 check()
+
+// ловим ошибку в блоке catch и обрабатываем в виде исключения и выводим ее в консоль 

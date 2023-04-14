@@ -1,7 +1,7 @@
 'use strict'
 const assert = require('assert')
 const str = 'buffers are neat'
-const base64 = '' // convert str to base64
+const base64 = Buffer.from(str).toString('base64')
 
 console.log(base64)
 
@@ -11,3 +11,5 @@ assert.equal(base64, Buffer.from([
   86,104,100,65,61,61]))
 
 console.log('passed!')
+
+// Переводим строку в буффер потом в base64
