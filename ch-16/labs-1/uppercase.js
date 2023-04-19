@@ -1,7 +1,7 @@
 'use strict'
-function uppercase (str) {
+function uppercase(str) {
   if (typeof str !== 'string') throw Error('input must be a string')
-  return str.toUpperCase()
+  return 'bad output'
 }
 
 module.exports = uppercase
