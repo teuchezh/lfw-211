@@ -6,7 +6,7 @@ test('throw when inputs not buffer', (done) => {
     expect(err.toString()).toEqual('Error: input must be a buffer')
   })
 
-  store(000, (err) => {
+  store(123, (err) => {
     expect(err.toString()).toEqual('Error: input must be a buffer')
   })
 
@@ -29,3 +29,12 @@ test('throw when inputs not buffer', (done) => {
   done()
 })
 
+test('store a buffer', (done) => {
+  store(Buffer.from('lol-kek-cheburek'), (err, data) => {
+    expect(err === null).toBe(true)
+    expect(typeof data.id === 'string').toBe(true)
+    expect(data.id.length === 4).toBe(true)
+
+    done()
+  })
+})
